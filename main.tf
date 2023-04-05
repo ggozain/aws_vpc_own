@@ -75,3 +75,34 @@ resource "aws_subnet" "private_2" {
   }
 
 }
+
+
+#Create Elastic IPs
+resource "aws_eip" "nat1" {
+  depends_on = [aws_internet_gateway.main]
+
+}
+
+resource "aws_eip" "nat2" {
+  depends_on = [aws_internet_gateway.main]
+
+}
+
+####create Public NAT Gateways
+resource "aws_nat_gateway" "natgw_1" {
+  allocation_id = aws_eip.nat1
+  subnet_id     = aws_subnet.public_1.id
+
+  tags = {
+    Name = "NAT 1"
+  }
+}
+
+resource "aws_nat_gateway" "natgw_2" {
+  allocation_id = aws_eip.nat2
+  subnet_id     = aws_subnet.public_2
+
+  tags = {
+    Name = "NAT 2"
+  }
+}

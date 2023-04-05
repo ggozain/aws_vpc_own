@@ -1,4 +1,4 @@
- terraform {
+terraform {
   cloud {
     organization = "gozain-lab"
     workspaces {
@@ -8,7 +8,7 @@
 
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "4.61.0"
     }
   }
