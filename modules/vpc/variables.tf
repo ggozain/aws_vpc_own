@@ -12,7 +12,7 @@ variable "vpc_cidr" {
 variable "public_subnet_numbers" {
     type = map(number)
 
-    description = "Map of AZ to a number that should be used fopr public subnets"
+    description = "Map of AZ to a number that should be used for public subnets"
 
     default = {
         "us-east-2a" = 1
@@ -25,7 +25,7 @@ variable "public_subnet_numbers" {
 variable "private_subnet_numbers" {
     type = map(number)
 
-    description = "Map of AZ to a number that should be used fopr private subnets"
+    description = "Map of AZ to a number that should be used for private subnets"
 
     default = {
         "us-east-2a" = 4
@@ -34,6 +34,24 @@ variable "private_subnet_numbers" {
     }
   
 }
+
+# variable "public_subnet_ids" {
+#     type = list(string)
+#     description = "Map of public subnet IDs to its CIRD block"
+#     default = tolist(data.aws_subnet.public.*.id)
+# }
+
+# variable "private_subnet_ids" {
+#     type = list(string)
+#     description = "Map of public subnet IDs to its CIRD block"
+#     default = tolist(data.aws_subnet.private.*.id)
+# }
+
+# variable "elastic_ip_ids" {
+#     type = list(string)
+#     description = "Map of public subnet IDs to its CIRD block"
+#     # default = tolist(data.aws_eip._elastic_ip.*.id)
+# }
 
 ## VARIABLES FOR TAGS
 
