@@ -1,13 +1,13 @@
 module "vpc" {
   source = "./modules/vpc"
 
-  infra_env = var.infra_env
+  infra_env = "prod"
   vpc_cidr  = "10.0.0.0/17"
 }
 
 #Create Internet Gateway
 resource "aws_internet_gateway" "main" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = module.vpc.vpc_id
   tags = {
     Name = "main"
   }
@@ -24,21 +24,21 @@ resource "aws_eip" "nat2" {
 
 }
 
-####create Public NAT Gateways
-resource "aws_nat_gateway" "natgw_1" {
-  allocation_id = aws_eip.nat1.id
-  subnet_id     = aws_subnet.public_1.id
+# ####create Public NAT Gateways
+# resource "aws_nat_gateway" "natgw_1" {
+#   allocation_id = aws_eip.nat1.id
+#   subnet_id     = module.vpc
 
-  tags = {
-    Name = "NAT 1"
-  }
-}
+#   tags = {
+#     Name = "NAT 1"
+#   }
+# }
 
-resource "aws_nat_gateway" "natgw_2" {
-  allocation_id = aws_eip.nat2.id
-  subnet_id     = aws_subnet.public_2.id
+# resource "aws_nat_gateway" "natgw_2" {
+#   allocation_id = aws_eip.nat2.id
+#   subnet_id     = aws_subnet.public_2.id
 
-  tags = {
-    Name = "NAT 2"
-  }
-}
+#   tags = {
+#     Name = "NAT 2"
+#   }
+# }
