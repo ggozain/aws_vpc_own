@@ -72,8 +72,7 @@ data "aws_subnets" "subnets" {
 #Create Elastic IPs
 resource "aws_eip" "elastic_ip" {
     depends_on = [aws_internet_gateway.main]
-    count = length(data.aws_subnets.subnets.ids)
-
+    count = length(var.public_subnet_numbers)
 }
 
 
