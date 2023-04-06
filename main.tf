@@ -2,9 +2,8 @@ module "vpc" {
   source = "./modules/vpc"
 
   infra_env = var.infra_env
-  vpc_cidr = "10.0.0.0/17"
+  vpc_cidr  = "10.0.0.0/17"
 }
-  
 
 #Create Internet Gateway
 resource "aws_internet_gateway" "main" {

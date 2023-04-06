@@ -25,6 +25,8 @@ resource "aws_subnet" "public" {
         Role        = "public"
         Environment = var.infra_env
         Subnet      = "${each.key}-${each.value}"
+        "kubernetes.io/cluster/eks" = "shared"
+        "kubernetes.io/role/elb"    = 1
     }
 }
 
@@ -41,5 +43,7 @@ resource "aws_subnet" "private" {
         Role        = "private"
         Environment = var.infra_env
         Subnet      = "${each.key}-${each.value}"
+        "kubernetes.io/cluster/eks"       = "shared"
+        "kubernetes.io/role/internal-elb" = 1
     }
 }
