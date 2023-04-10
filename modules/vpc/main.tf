@@ -1,4 +1,4 @@
- #Create new EKS compatible VPC
+ #Create new EKS compatible VPC + private&public subnets
  resource "aws_vpc" "vpc" {
   cidr_block                       = var.vpc_cidr
   instance_tenancy                 = "default"
@@ -59,33 +59,8 @@ resource "aws_internet_gateway" "main" {
   }
 }
 
-data "aws_subnets" "subnets" {
-  filter {
-    name   = "vpc-id"
-    values = [aws_vpc.vpc.id]
-  }
-    tags = {
-    Role = "public"
-  }
-}
-
 #Create Elastic IPs
 resource "aws_eip" "elastic_ip" {
     depends_on = [aws_internet_gateway.main]
     count = length(var.public_subnet_numbers)
 }
-
-
-
-# resource "aws_nat_gateway" "natgw" {
-#     for_each = var.public_subnet_ids
-
-#     allocation_id = aws_eip.elastic_ip
-#     subnet_id     = each.value
-
-#   tags = {
-#     Name = "gozain-lab-${var.infra_env}-private-natgw"
-#     Project     = var.tag_project_name
-#     Environment = var.infra_env
-#   }
-# }

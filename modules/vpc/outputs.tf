@@ -23,3 +23,8 @@ output "vpc_private_subnets" {
     subnet.id => subnet.cidr_block
   }
 }
+
+output "vpc_eip_ids" {
+    # Result is a list of elastic IP ids
+    value = aws_eip.elastic_ip.*.id
+}

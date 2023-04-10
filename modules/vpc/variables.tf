@@ -35,24 +35,6 @@ variable "private_subnet_numbers" {
   
 }
 
-# variable "public_subnet_ids" {
-#     type = list(string)
-#     description = "Map of public subnet IDs to its CIRD block"
-#     default = tolist(data.aws_subnet.public.*.id)
-# }
-
-# variable "private_subnet_ids" {
-#     type = list(string)
-#     description = "Map of public subnet IDs to its CIRD block"
-#     default = tolist(data.aws_subnet.private.*.id)
-# }
-
-# variable "elastic_ip_ids" {
-#     type = list(string)
-#     description = "Map of public subnet IDs to its CIRD block"
-#     # default = tolist(data.aws_eip._elastic_ip.*.id)
-# }
-
 ## VARIABLES FOR TAGS
 
 variable "tag_project_name"{
