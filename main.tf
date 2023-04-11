@@ -42,7 +42,7 @@ module "route_table_association" {
   source                  = "./modules/route_table_association"
   public_route_table_id   = module.routing_tables.public_route_table_id
   private_route_table_ids = module.routing_tables.private_route_table_ids
-  public_subnet_ids       = module.vpc.vpc_public_subnet_ids
+  public_subnet_ids       = keys(module.vpc.vpc_public_subnets)
   private_subnet_ids      = keys(module.vpc.vpc_private_subnets)
 
 }

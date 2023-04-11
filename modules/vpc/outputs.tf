@@ -24,11 +24,6 @@ output "vpc_private_subnets" {
   }
 }
 
-output "vpc_public_subnet_ids" {
-  # Result is a list of public subnet ids 
-  value = aws_subnet.public.*.id
-}
-
 output "vpc_eip_ids" {
     # Result is a list of elastic IP ids 
     value = aws_eip.elastic_ip.*.id
