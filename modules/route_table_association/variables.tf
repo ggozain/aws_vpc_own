@@ -6,10 +6,10 @@ variable "private_route_table_ids" {
     type = list
 }
 
-variable "private_subnet_ids" {
+variable "private_subnet" {
     type = map
 }
 
-variable "public_subnet_ids" {
+variable "public_subnet" {
     type = map
 }
