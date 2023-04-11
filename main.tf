@@ -31,10 +31,7 @@ module "nat_gw" {
 // natgw_ids = (list) list of the natgws IDs created by VPC module
 //optional variables:
 module "routing_tables" {
-  depends_on = [
-    module.nat_gw,
-    module.vpc
-  ]
+
   source     = "./modules/routing_tables"
   infra_env  = "test"
   aws_vpc_id = module.vpc.vpc_id
@@ -43,13 +40,10 @@ module "routing_tables" {
 }
 
 module "route_table_association" {
- depends_on = [
-    module.nat_gw,
-    module.vpc
-  ]
+
   source                  = "./modules/route_table_association"
   public_route_table_id   = module.routing_tables.public_route_table_id
   private_route_table_ids = module.routing_tables.private_route_table_ids
-  public_subnet           = toset(module.vpc.vpc_public_subnets)
-  private_subnet          = toset(module.vpc.vpc_private_subnets)
+  public_subnet           = module.vpc.vpc_public_subnets
+  private_subnet          = module.vpc.vpc_private_subnets
 }
