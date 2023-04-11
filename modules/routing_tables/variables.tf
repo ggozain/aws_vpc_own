@@ -20,6 +20,6 @@ variable "igw_id" {
 }
 
 variable "nat_gw_ids" {
-    type = map
+    type = list
     description = "List of available NAT Gateways inside the VPC"
 }

@@ -14,16 +14,16 @@ resource "aws_route_table" "public" {
 }
 
 resource "aws_route_table" "private" {
-    for_each = var.nat_gw_ids
+    count = var.nat_gw_ids
 
     vpc_id = var.aws_vpc_id
     
     route {
         cidr_block = "0.0.0.0/0"
-        gateway_id = each.value
+        gateway_id = var.nat_gw_ids[count.index]
     }
     tags = {
-        Name = "gozain-lab-${var.infra_env}-private-routing-table-${each.value}"
+        Name = "gozain-lab-${var.infra_env}-private-routing-table-${var.nat_gw_ids[count.index]}"
         Project     = var.tag_project_name
         Environment = var.infra_env
     }
