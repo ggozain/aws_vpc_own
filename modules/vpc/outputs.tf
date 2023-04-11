@@ -26,7 +26,7 @@ output "vpc_private_subnets" {
 
 output "vpc_eip_ids" {
     # Result is a list of elastic IP ids 
-    value = aws_eip.elastic_ip.*.id
+    value = aws_eip.elastic_ip[*].id
 }
 
 output "vpc_internet_gateway_id" {

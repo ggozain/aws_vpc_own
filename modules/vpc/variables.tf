@@ -9,6 +9,10 @@ variable "vpc_cidr" {
     default = "10.0.0.0/16"
 }
 
+data "aws_availability_zones" "available" {
+    state = "available"
+}
+
 variable "public_subnet_numbers" {
     type = map(number)
 

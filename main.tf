@@ -39,7 +39,7 @@ module "routing_tables" {
   infra_env  = "test"
   aws_vpc_id = module.vpc.vpc_id
   igw_id     = module.vpc.vpc_internet_gateway_id
-  nat_gw_ids = toset(module.nat_gw.vpc_nat_gw_ids)
+  nat_gw_ids = module.nat_gw.vpc_nat_gw_ids
 }
 
 module "route_table_association" {
