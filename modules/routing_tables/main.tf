@@ -14,7 +14,7 @@ resource "aws_route_table" "public" {
 }
 
 resource "aws_route_table" "private" {
-    count = var.nat_gw_ids
+    count = length(var.nat_gw_ids)
 
     vpc_id = var.aws_vpc_id
     
