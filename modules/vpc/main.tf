@@ -20,7 +20,7 @@ resource "aws_subnet" "public" {
     cidr_block = cidrsubnet(aws_vpc.vpc.cidr_block, 4, each.value)
 
     tags = {
-        Name        = "gozain-lab-${var.infra_env}-public-subnet"
+        Name        = "gozain-lab-${var.infra_env}-public-subnet-${each.key}"
         Project     = var.tag_project_name
         Role        = "public"
         Environment = var.infra_env
@@ -38,7 +38,7 @@ resource "aws_subnet" "private" {
     cidr_block = cidrsubnet(aws_vpc.vpc.cidr_block, 4, each.value)
 
     tags = {
-        Name        = "gozain-lab-${var.infra_env}-private-subnet"
+        Name        = "gozain-lab-${var.infra_env}-private-subnet-${each.key}"
         Project     = var.tag_project_name
         Role        = "private"
         Environment = var.infra_env

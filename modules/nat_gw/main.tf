@@ -5,7 +5,7 @@ resource "aws_nat_gateway" "nat_gw" {
     subnet_id     = var.vpc_public_subnet_ids[count.index]
 
   tags = {
-    Name = "gozain-lab-${var.infra_env}-private-natgw"
+    Name = "gozain-lab-${var.infra_env}-private-natgw-${var.vpc_public_subnet_ids[count.index]}"
     Project     = var.tag_project_name
     Environment = var.infra_env
   }
