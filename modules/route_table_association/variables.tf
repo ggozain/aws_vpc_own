@@ -7,9 +7,9 @@ variable "private_route_table_ids" {
 }
 
 variable "private_subnet_ids" {
-    type = map
+    type = list
 }
 
 variable "public_subnet_ids" {
-    type = map
+    type = list
 }
