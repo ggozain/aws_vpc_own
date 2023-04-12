@@ -30,14 +30,14 @@ module "nat_gw" {
 // igw_id = (sting) ID of the internet gw created by VPC module
 // natgw_ids = (list) list of the natgws IDs created by VPC module
 //optional variables:
-# module "routing_tables" {
+module "routing_tables" {
 
-#   source     = "./modules/routing_tables"
-#   infra_env  = "test"
-#   aws_vpc_id = module.vpc.vpc_id
-#   igw_id     = module.vpc.vpc_internet_gateway_id
-#   nat_gw_ids = module.nat_gw.vpc_nat_gw_ids
-# }
+  source     = "./modules/routing_tables"
+  infra_env  = "test"
+  aws_vpc_id = module.vpc.vpc_id
+  igw_id     = module.vpc.vpc_internet_gateway_id
+  nat_gw_ids = module.nat_gw.vpc_nat_gw_ids
+}
 
 # module "route_table_association" {
 
