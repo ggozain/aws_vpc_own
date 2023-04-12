@@ -46,3 +46,11 @@ variable "tag_project_name"{
     description = "Project Name"
     default = "EKS Cluster"
 }
+
+variable "public_route_table_id" {
+    type = string
+}
+
+variable "private_route_table_ids" {
+    type = list
+}

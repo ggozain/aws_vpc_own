@@ -7,6 +7,8 @@ module "vpc" {
   source    = "./modules/vpc"
   infra_env = "test"
   vpc_cidr  = "10.0.0.0/17"
+  private_route_table_ids = module.routing_tables.private_route_table_ids
+  public_route_table_id   = module.routing_tables.public_route_table_id
 }
 
 ##Creates NATGW public & private. 
@@ -39,12 +41,12 @@ module "routing_tables" {
   nat_gw_ids = module.nat_gw.vpc_nat_gw_ids
 }
 
-module "route_table_association" {
+# module "route_table_association" {
 
-  source                  = "./modules/route_table_association"
-  depends_on = [ module.vpc ]
-  public_route_table_id   = module.routing_tables.public_route_table_id
-  private_route_table_ids = module.routing_tables.private_route_table_ids
-  public_subnet           = keys(module.vpc.vpc_public_subnets)
-  private_subnet          = keys(module.vpc.vpc_private_subnets)
-}
+#   source                  = "./modules/route_table_association"
+#   depends_on              = [module.vpc]
+#   public_route_table_id   = module.routing_tables.public_route_table_id
+#   private_route_table_ids = module.routing_tables.private_route_table_ids
+#   public_subnet           = keys(module.vpc.vpc_public_subnets)
+#   private_subnet          = keys(module.vpc.vpc_private_subnets)
+# }
