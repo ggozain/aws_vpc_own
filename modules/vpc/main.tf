@@ -65,18 +65,3 @@ resource "aws_eip" "elastic_ip" {
     depends_on = [aws_internet_gateway.main]
     count = length(var.public_subnet_numbers)
 }
-
-
-resource "aws_route_table_association" "public" {
-    for_each = {for subnet, val in aws_subnet.public: subnet.id => val}
-    subnet_id = each.key
-    route_table_id = var.public_route_table_id
-  
-}
-
-resource "aws_route_table_association" "private" {
-    for_each = {for subnet, val in aws_subnet.private: subnet.id => val}
-    subnet_id = each.key
-    route_table_id = var.private_route_table_ids[each.value]
-  
-}

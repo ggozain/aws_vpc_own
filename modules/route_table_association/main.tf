@@ -1,17 +1,17 @@
 resource "aws_route_table_association" "public" {
-    count = length(var.public_subnet)
+    for_each = {for subnet, v in var.public_subnet: subnet => v}
 
-    subnet_id = var.public_subnet[count.index]
+    subnet_id = each.key
 
     route_table_id = var.public_route_table_id
   
 }
 
 resource "aws_route_table_association" "private" {
-    count = length(var.private_subnet)
+    for_each = {for subnet, v in var.private_subnet: subnet => v}
 
-    subnet_id = var.private_subnet[count.index]
+    subnet_id = each.key
 
-    route_table_id = var.private_route_table_ids[count.index]
+    route_table_id = var.private_route_table_ids[each.value]
   
 }
