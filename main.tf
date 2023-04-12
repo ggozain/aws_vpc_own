@@ -30,21 +30,21 @@ module "nat_gw" {
 // igw_id = (sting) ID of the internet gw created by VPC module
 // natgw_ids = (list) list of the natgws IDs created by VPC module
 //optional variables:
-module "routing_tables" {
+# module "routing_tables" {
 
-  source     = "./modules/routing_tables"
-  infra_env  = "test"
-  aws_vpc_id = module.vpc.vpc_id
-  igw_id     = module.vpc.vpc_internet_gateway_id
-  nat_gw_ids = module.nat_gw.vpc_nat_gw_ids
-}
+#   source     = "./modules/routing_tables"
+#   infra_env  = "test"
+#   aws_vpc_id = module.vpc.vpc_id
+#   igw_id     = module.vpc.vpc_internet_gateway_id
+#   nat_gw_ids = module.nat_gw.vpc_nat_gw_ids
+# }
 
-module "route_table_association" {
+# module "route_table_association" {
 
-  source                  = "./modules/route_table_association"
-  depends_on = [ module.vpc ]
-  public_route_table_id   = module.routing_tables.public_route_table_id
-  private_route_table_ids = module.routing_tables.private_route_table_ids
-  public_subnet           = keys(module.vpc.vpc_public_subnets)
-  private_subnet          = keys(module.vpc.vpc_private_subnets)
-}
+#   source                  = "./modules/route_table_association"
+#   depends_on = [ module.vpc ]
+#   public_route_table_id   = module.routing_tables.public_route_table_id
+#   private_route_table_ids = module.routing_tables.private_route_table_ids
+#   public_subnet           = keys(module.vpc.vpc_public_subnets)
+#   private_subnet          = keys(module.vpc.vpc_private_subnets)
+# }
