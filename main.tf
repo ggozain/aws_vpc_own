@@ -19,7 +19,7 @@ module "vpc" {
 module "nat_gw" {
   source                = "./modules/nat_gw"
   vpc_eip_ids           = module.vpc.vpc_eip_ids
-  vpc_public_subnet_ids = keys(module.vpc.vpc_public_subnets)
+  vpc_public_subnet_ids = values(module.vpc.vpc_public_subnets)
   infra_env             = "test"
 }
 
@@ -47,12 +47,12 @@ module "routing_tables" {
 #   vpc_id = module.vpc.vpc_id
 # }
 
-# module "route_table_association" {
+module "route_table_association" {
 
-#   source                  = "./modules/route_table_association"
-#   vpc_id                  = module.vpc.vpc_id
-#   public_route_table_id   = module.routing_tables.public_route_table_id
-#   private_route_table_ids = module.routing_tables.private_route_table_ids
-#   public_subnet           = data.aws_subnet.public.*.id
-#   private_subnet          = data.aws_subnet.private.*.id
-# }
+  source                  = "./modules/route_table_association"
+  vpc_id                  = module.vpc.vpc_id
+  public_route_table_id   = module.routing_tables.public_route_table_id
+  private_route_table_ids = module.routing_tables.private_route_table_ids
+  public_subnet           = module.vpc.vpc_public_subnets
+  private_subnet          = module.vpc.vpc_private_subnets
+}
