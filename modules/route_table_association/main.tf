@@ -7,7 +7,7 @@ resource "aws_route_table_association" "public" {
 }
 
 resource "aws_route_table_association" "private" {
-    for_each = var.private_subnet
-    subnet_id = each.value
-    route_table_id = var.private_route_table_ids[tonumber(each.key)]
+    count = length(var.private_route_table_ids)
+    subnet_id = values(var.private_subnet)[count.index]
+    route_table_id = var.private_route_table_ids[count.index]
 }
