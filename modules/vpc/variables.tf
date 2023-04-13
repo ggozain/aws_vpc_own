@@ -39,6 +39,15 @@ variable "private_subnet_numbers" {
   
 }
 
+variable "public_route_table_id" {
+    type = string
+}
+
+variable "private_route_table_ids" {
+    type = list
+}
+
+
 ## VARIABLES FOR TAGS
 
 variable "tag_project_name"{
