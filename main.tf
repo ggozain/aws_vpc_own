@@ -53,6 +53,6 @@ module "route_table_association" {
   vpc_id                  = module.vpc.vpc_id
   public_route_table_id   = module.routing_tables.public_route_table_id
   private_route_table_ids = module.routing_tables.private_route_table_ids
-  public_subnet           = values(data.aws_subnet.public)[*].id
-  private_subnet          = values(data.aws_subnet.private)[*].id
+  public_subnet           = data.aws_subnet.public.*.id
+  private_subnet          = data.aws_subnet.private.*.id
 }
