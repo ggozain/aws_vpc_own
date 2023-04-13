@@ -39,13 +39,13 @@ module "routing_tables" {
   nat_gw_ids = module.nat_gw.vpc_nat_gw_ids
 }
 
-data "aws_subnet" "private" {
-  vpc_id = module.vpc.vpc_id
-}
+# data "aws_subnet" "private" {
+#   vpc_id = module.vpc.vpc_id
+# }
 
-data "aws_subnet" "public" {
-  vpc_id = module.vpc.vpc_id
-}
+# data "aws_subnet" "public" {
+#   vpc_id = module.vpc.vpc_id
+# }
 
 # module "route_table_association" {
 
