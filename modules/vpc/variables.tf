@@ -47,6 +47,11 @@ variable "private_route_table_ids" {
     type = list
 }
 
+variable "counter" {
+    type = number
+    default = 0
+}
+
 
 ## VARIABLES FOR TAGS
 
