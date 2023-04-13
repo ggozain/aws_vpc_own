@@ -7,8 +7,6 @@ module "vpc" {
   source                  = "./modules/vpc"
   infra_env               = "test"
   vpc_cidr                = "10.0.0.0/17"
-  public_route_table_id   = module.routing_tables.public_route_table_id
-  private_route_table_ids = module.routing_tables.private_route_table_ids
 }
 
 ##Creates NATGW public & private. 
